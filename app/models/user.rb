@@ -7,10 +7,20 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :microposts
+
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relationship, source: :user
+  #ここまでフォロー／アンフォローのリレーション構成
+  
+  #ここから
+  has_many :favorites
+  has_many :bookmarkings, through: :favorites, source: :micropost
+  has_many :reverses_of_favorite, class_name: 'favorite', foreign_key: 'micropost_id'
+  has_many :persons, through: :reverses_of_favorite, source: :user
+  #ここまでお気に入り課題のリレーション構成
+
 
   def follow(other_user)
     unless self == other_user
@@ -29,5 +39,19 @@ class User < ApplicationRecord
   
   def feed_microposts
     Micropost.where(user_id: self.following_ids + [self.id])
+  end
+  
+  #ここからお気に入り用メソッド
+  def bookmark(micropost)
+    self.favorites.find_or_create_by(micropost_id: micropost.id)
+  end
+  
+  def nobookmark(other_user)
+    self.favorites.find_by(micropost_id: micropost.id)
+    favorite.destroy if favorite
+  end
+  
+  def bookmarking?(other_user)
+    self.bookmarkings.include?(other_user)
   end
 end

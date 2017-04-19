@@ -8,7 +8,8 @@
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
     </div>
-      <% render 'relationships/follow_button' , user: @user %>
+    <%= render 'relationships/follow_button' , user: @user %>
+    <%= link_to "お気に入りリスト",bookmarkings_user_path(@user), microposts: @microposts, user: @bookmarkings, class: 'btn btn-danger btn-block' %>
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
