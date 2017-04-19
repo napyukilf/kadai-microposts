@@ -40,8 +40,8 @@ class UsersController < ApplicationController
   end
   
   def bookmarkings
-    @micropost = Micropost.find(params[:id])
-    @bookmarkings = @micropost.bookmarkings.page(params[:page])
+    @user = User.find(params[:id])
+    @bookmarkings = @user.bookmarkings.page(params[:page])
 
   end
   
