@@ -46,12 +46,12 @@ class User < ApplicationRecord
     self.favorites.find_or_create_by(micropost_id: micropost.id)
   end
   
-  def nobookmark(other_user)
-    self.favorites.find_by(micropost_id: micropost.id)
+  def nobookmark(micropost)
+    favorite = self.favorites.find_by(micropost_id: micropost.id)
     favorite.destroy if favorite
   end
   
-  def bookmarking?(other_user)
-    self.bookmarkings.include?(other_user)
+  def bookmarking?(micropost)
+    self.bookmarkings.include?(micropost)
   end
 end

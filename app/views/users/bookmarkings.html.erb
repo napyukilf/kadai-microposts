@@ -1,5 +1,5 @@
 <ul class="media-list">
-  <% @user.bookmarkings.each do |micropost| %>
+  <% @user.microposts.each do |micropost| %>
     <li class="media">
      <div class="media-left">
       <img class="media-object img-rounded" src="<%= gravatar_url(current_user, options = { size: 50 }) %>" alt="">
