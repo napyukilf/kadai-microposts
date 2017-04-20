@@ -10,7 +10,7 @@
     </div>
     <%= render 'relationships/follow_button', user: @user %>
       <% if current_user == @user %>
-        <%= link_to "お気に入りリスト",bookmarkings_user_path, class: 'btn btn-danger btn-block' %>
+        <%= link_to "お気に入りリスト",bookmarkings_user_path, class: 'btn btn-success btn-block' %>
       <% end %>
   </aside>
   <div class="col-xs-8">
