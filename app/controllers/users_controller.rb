@@ -42,10 +42,7 @@ class UsersController < ApplicationController
   def bookmarkings
     @user = User.find(params[:id])
     @bookmarkings = @user.bookmarkings.page(params[:page])
-
   end
-  
-
   
   private
   

@@ -9,7 +9,9 @@
       </div>
     </div>
     <%= render 'relationships/follow_button' , user: @user %>
-    <%= link_to "お気に入りリスト",bookmarkings_user_path, microposts: @microposts, user: @bookmarkings, class: 'btn btn-danger btn-block' %>
+      <% if current_user == @user %>
+        <%= link_to "お気に入りリスト",bookmarkings_user_path, class: 'btn btn-danger btn-block' %>
+      <% end %>
   </aside>
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
